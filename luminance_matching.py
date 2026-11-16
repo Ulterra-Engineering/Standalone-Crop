@@ -70,4 +70,4 @@ def match_crop_luminance(
         "requested_shift_lstar": float(requested_shift),
         "applied_shift_lstar": applied_shift,
     }
-    return Image.fromarray(matched_rgb, mode="RGB"), result
+    return Image.fromarray(matched_rgb), result
