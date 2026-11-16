@@ -28,6 +28,7 @@ from crop_pipeline import (
 )
 from image_orientation import normalize_uploaded_image, read_exif_orientation
 from face_model import FaceFinder
+from luminance_matching import match_crop_luminance
 from top_isometric_web import top_isometric
 from view_uploads import VIEW_UPLOAD_FIELDS, unique_view_filename
 
@@ -75,6 +76,24 @@ def load_rgb(path: Path) -> Image.Image:
 
 def save_rgb(image: Image.Image, path: Path) -> None:
     image.save(path, format="PNG")
+
+
+
+
+
+def save_luminance_matched_crop(image: Image.Image, folder: Path, view: str, item: dict) -> None:
+    """Save an experimental comparison without replacing the original crop."""
+    item["luminance_match"] = None
+    item["luminance_match_error"] = None
+    if view not in {"top", "face"}:
+        return
+    try:
+        matched, stats = match_crop_luminance(image, view)
+        save_rgb(matched, folder / "crop_luminance_matched.png")
+        item["luminance_match"] = stats
+    except Exception as exc:
+        item["luminance_match_error"] = f"{type(exc).__name__}: {exc}"
+        print(f"[Luminance match] SKIPPED {item['filename']}: {exc}", flush=True)
 
 
 def load_object_detector(view: str):
@@ -295,6 +314,8 @@ def upload():
                 "region_width": None,
                 "region_height": None,
                 "error": None,
+                "luminance_match": None,
+                "luminance_match_error": None,
             }
             item_ids.append(job_id)
 
@@ -355,6 +376,9 @@ def rotate(batch_id, job_id, direction):
     item["detection"] = None
     item["error"] = None
     (item_dir(batch_id, job_id) / "crop.png").unlink(missing_ok=True)
+    (item_dir(batch_id, job_id) / "crop_luminance_matched.png").unlink(missing_ok=True)
+    item["luminance_match"] = None
+    item["luminance_match_error"] = None
     return redirect(url_for("batch_view", batch_id=batch_id))
 
 
@@ -387,7 +411,9 @@ def process_face_item(batch_id: str, item: dict, image: Image.Image, settings: d
     face["cx"] = float(face["cx"]) + offset_x
     face["cy"] = float(face["cy"]) + offset_y
     crop, box = padded_square_crop(image, face)
-    save_rgb(crop, item_dir(batch_id, item["id"]) / "crop.png")
+    crop_folder = item_dir(batch_id, item["id"])
+    save_rgb(crop, crop_folder / "crop.png")
+    save_luminance_matched_crop(crop, crop_folder, item["view"], item)
     item["crop"] = True
     item["region_width"], item["region_height"] = region_width, region_height
     item["face"] = {
@@ -437,7 +463,9 @@ def process_object_item(batch_id: str, item: dict, image: Image.Image) -> None:
     else:
         crop_box = square_crop_geometry(image.size, full_box, coverage)
     crop = crop_square(image, crop_box, OUTPUT_SIZE)
-    save_rgb(crop, item_dir(batch_id, item["id"]) / "crop.png")
+    crop_folder = item_dir(batch_id, item["id"])
+    save_rgb(crop, crop_folder / "crop.png")
+    save_luminance_matched_crop(crop, crop_folder, item["view"], item)
     x1, y1, x2, y2 = full_box
     item["crop"] = True
     item["region_width"], item["region_height"] = region_width, region_height
@@ -475,6 +503,9 @@ def autocrop_batch(batch_id):
     for job_id in batch["items"]:
         item = jobs[job_id]
         item["crop"], item["face"], item["detection"], item["error"] = False, None, None, None
+        item["luminance_match"] = None
+        item["luminance_match_error"] = None
+        (item_dir(batch_id, job_id) / "crop_luminance_matched.png").unlink(missing_ok=True)
         try:
             image = load_rgb(item_dir(batch_id, job_id) / "working.png")
             if item["view"] == "face":
@@ -507,7 +538,7 @@ def image_file(batch_id, job_id, kind):
     batch = require_batch(batch_id)
     if job_id not in batch["items"]:
         abort(404)
-    name = {"working": "working.png", "crop": "crop.png"}.get(kind)
+    name = {"working": "working.png", "crop": "crop.png", "matched": "crop_luminance_matched.png"}.get(kind)
     if not name:
         abort(404)
     path = item_dir(batch_id, job_id) / name
@@ -528,6 +559,21 @@ def download_one(batch_id, job_id):
     return send_file(path, as_attachment=True, download_name=f"{item['output_name']}_centered.png")
 
 
+@app.get("/download-matched/<batch_id>/<job_id>")
+def download_matched_one(batch_id, job_id):
+    batch = require_batch(batch_id)
+    if job_id not in batch["items"]:
+        abort(404)
+    item = jobs[job_id]
+    path = item_dir(batch_id, job_id) / "crop_luminance_matched.png"
+    if not item["crop"] or not path.exists():
+        abort(404, "No experimental luminance-matched crop is available for this image.")
+    return send_file(
+        path, as_attachment=True,
+        download_name=f"{item['output_name']}_centered_luminance_matched.png",
+    )
+
+
 @app.get("/download-batch/<batch_id>")
 def download_batch(batch_id):
     batch = require_batch(batch_id)
@@ -539,6 +585,12 @@ def download_batch(batch_id):
             path = item_dir(batch_id, job_id) / "crop.png"
             if item["crop"] and path.exists():
                 archive.write(path, arcname=f"{item['output_name']}_centered.png")
+                matched_path = item_dir(batch_id, job_id) / "crop_luminance_matched.png"
+                if matched_path.exists():
+                    archive.write(
+                        matched_path,
+                        arcname=f"{item['output_name']}_centered_luminance_matched.png",
+                    )
                 added += 1
     if not added:
         abort(404, "There are no successfully cropped images to download.")
