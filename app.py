@@ -442,6 +442,7 @@ def process_object_item(batch_id: str, item: dict, image: Image.Image) -> None:
     predict_options = {
         "source": model_image,
         "verbose": False,
+        "conf": 0.10,
         "iou": BOX_FUSION_CANDIDATE_IOU,
     }
     inference_size = OBJECT_INFERENCE_IMAGE_SIZES.get(view)
