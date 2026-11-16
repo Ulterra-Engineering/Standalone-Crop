@@ -76,6 +76,19 @@
           <p class="notice warn">Provisional framing — visually review Top/Isometric crops before accepting final margins.</p>
         {% endif %}
         <a class="download" href="{{ url_for('download_one', batch_id=batch_id, job_id=item.id) }}">Download this crop</a>
+        {% if item.luminance_match %}
+          <h3>Experimental luminance-matched comparison</h3>
+          <img class="preview crop" src="{{ url_for('image_file', batch_id=batch_id, job_id=item.id, kind='matched') }}?v={{ item.rotation }}" alt="Experimental luminance-matched crop">
+          <dl>
+            <dt>Reference median L*</dt><dd>{{ "%.2f"|format(item.luminance_match.target_median_lstar) }}</dd>
+            <dt>Original median L*</dt><dd>{{ "%.2f"|format(item.luminance_match.before_median_lstar) }}</dd>
+            <dt>Adjusted median L*</dt><dd>{{ "%.2f"|format(item.luminance_match.after_median_lstar) }}</dd>
+            <dt>Applied correction</dt><dd>{{ "%.2f"|format(item.luminance_match.applied_shift_lstar) }} L*</dd>
+          </dl>
+          <a class="download" href="{{ url_for('download_matched_one', batch_id=batch_id, job_id=item.id) }}">Download matched comparison</a>
+        {% elif item.luminance_match_error %}
+          <p class="notice warn">Luminance comparison skipped: {{ item.luminance_match_error }}</p>
+        {% endif %}
       {% elif item.error %}
         <p class="notice bad">{{ item.error }}</p>
       {% else %}
