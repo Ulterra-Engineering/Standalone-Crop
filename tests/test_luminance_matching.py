@@ -29,7 +29,7 @@ class LuminanceMatchingTests(unittest.TestCase):
 
     def test_original_image_is_not_modified(self):
         pixels = np.full((32, 32, 3), (80, 100, 120), dtype=np.uint8)
-        image = Image.fromarray(pixels, mode="RGB")
+        image = Image.fromarray(pixels)
         before = np.asarray(image).copy()
 
         match_crop_luminance(image, "top")
