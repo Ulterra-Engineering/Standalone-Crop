@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Full Cutter Damage Annotation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .fc-layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:22px;margin-top:20px}
+    .fc-stage{position:relative;background:#171b20;min-height:360px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .fc-frame{position:relative;display:inline-block;max-width:100%;line-height:0}
+    .fc-frame img{display:block;max-width:100%;max-height:78vh;width:auto;height:auto}
+    .fc-frame canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair}
+    .fc-panel{background:#fff;border:1px solid #d9e0e5;border-radius:10px;padding:16px;margin-bottom:14px}
+    .fc-nav,.fc-views,.fc-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .fc-nav{justify-content:space-between}
+    .fc-active{background:#087f8c!important;color:#fff!important}
+    .fc-muted{color:#65727d;font-size:.9rem}
+    .fc-guidance li{margin:8px 0}
+    .fc-toolbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+    @media(max-width:850px){.fc-layout{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main class="shell wide annotation-shell">
+  <a class="back" href="{{ url_for('index') }}">← Back to Cutter Face Cropper</a>
+  <h1>Full Cutter Damage Annotation</h1>
+  <p class="sub">Separate damage-focused dataset. Both Top and Isometric images use one class: <strong>full_cutter</strong>. This editor has its own annotation manifest and does not modify the existing Top / Isometric dataset.</p>
+
+  <div class="fc-toolbar">
+    <div class="fc-nav">
+      <button id="fc-previous" class="secondary" type="button">← Previous</button>
+      <span id="fc-position" class="fc-muted">Loading images…</span>
+      <button id="fc-next" type="button">Next →</button>
+    </div>
+    <div class="fc-views" role="group" aria-label="Image view">
+      <button id="fc-view-top" class="secondary" type="button">Top</button>
+      <button id="fc-view-isometric" class="secondary" type="button">Isometric</button>
+    </div>
+  </div>
+
+  <div class="fc-layout">
+    <section>
+      <div class="fc-stage">
+        <div id="fc-empty" class="empty">Loading image set…</div>
+        <div id="fc-frame" class="fc-frame" hidden>
+          <img id="fc-image" alt="Full cutter image for annotation">
+          <canvas id="fc-canvas"></canvas>
+        </div>
+      </div>
+      <p id="fc-name" class="fc-muted"></p>
+      <p class="fc-muted">Drag to draw a box. Drag inside a box to move it. Select a box and press Delete to remove it.</p>
+    </section>
+
+    <aside>
+      <div class="fc-panel">
+        <h2>Current image</h2>
+        <p id="fc-view-status">View not assigned</p>
+        <p><strong id="fc-box-count">0</strong> full-cutter box(es)</p>
+        <p id="fc-reviewed" class="fc-muted"></p>
+        <div class="fc-actions">
+          <button id="fc-delete" class="secondary" type="button" disabled>Delete selected</button>
+          <button id="fc-clear" class="secondary" type="button">Clear boxes</button>
+          <button id="fc-save" type="button">Save annotation</button>
+          <button id="fc-skip" class="secondary" type="button">Skip image</button>
+        </div>
+        <p id="fc-status" class="fc-muted" aria-live="polite">Changes are not saved until you click Save, Skip, or navigate.</p>
+      </div>
+      <div class="fc-panel">
+        <h2>Annotation rules</h2>
+        <ul class="fc-guidance">
+          <li>Box the entire physical cutter, including carbide body and diamond table.</li>
+          <li>Include worn, chipped, spalled, or partially missing diamond material when the cutter's physical boundary remains identifiable.</li>
+          <li>Annotate every separately visible cutter in the image.</li>
+          <li>Skip an image when no cutter is visible or its physical boundary cannot be identified reliably.</li>
+          <li>Do not box only the diamond table.</li>
+        </ul>
+      </div>
+      <div class="fc-panel">
+        <h2>Dataset isolation</h2>
+        <p class="fc-muted">Class: <strong>full_cutter</strong> for both views.</p>
+        <p class="fc-muted">Annotations are saved separately under <code>dataset/full_cutter_damage_v1/</code>. No YOLO export is performed from this page.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+<script src="{{ url_for('static', filename='full_cutter.js') }}" defer></script>
+</body>
+</html>
