@@ -30,6 +30,7 @@ from image_orientation import normalize_uploaded_image, read_exif_orientation
 from face_model import FaceFinder
 from luminance_matching import match_crop_luminance
 from top_isometric_web import top_isometric
+from full_cutter_web import full_cutter
 from view_uploads import VIEW_UPLOAD_FIELDS, unique_view_filename
 
 ROOT = Path(__file__).resolve().parent
@@ -54,6 +55,7 @@ app.config["MAX_CONTENT_LENGTH"] = MAX_UPLOAD_MB * 1024 * 1024
 finder = FaceFinder()
 object_detectors = {}
 app.register_blueprint(top_isometric)
+app.register_blueprint(full_cutter)
 
 # Local prototype state only; restart clears active batch metadata.
 batches: dict[str, dict] = {}
