@@ -155,12 +155,13 @@ def main():
     print(f"Inference IoU: {BOX_FUSION_CANDIDATE_IOU}")
 
     detector = YOLO(str(model_path))
-    result = detector.predict(
+    predictions = detector.predict(
         source=model_image,
         verbose=False,
         iou=BOX_FUSION_CANDIDATE_IOU,
         imgsz=640,
-    )[0]
+    )
+    result = next(iter(predictions))
 
     raw = []
     boxes = getattr(result, "boxes", None)

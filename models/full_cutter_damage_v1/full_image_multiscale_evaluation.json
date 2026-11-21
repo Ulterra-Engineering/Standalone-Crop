@@ -1,0 +1,855 @@
+{
+  "checkpoint": "C:\\Users\\Chris\\Standalone-Crop\\models\\full_cutter_damage_v1\\weights\\best.pt",
+  "dataset": "C:\\Users\\Chris\\Standalone-Crop\\training_full_cutter_damage_v1",
+  "split": "val",
+  "inference_contract": {
+    "input": "complete EXIF-normalized RGB image",
+    "image_sizes": [
+      640,
+      1024
+    ],
+    "confidence": 0.25,
+    "candidate_nms_iou": 0.99,
+    "fusion_cluster_iou": 0.6,
+    "selection": "fused candidate nearest full-image center"
+  },
+  "summary": {
+    "all": {
+      "images": 21,
+      "matched_iou_50": 21,
+      "recall_at_iou_50": 1.0,
+      "mean_iou": 0.8921388216903855,
+      "median_iou": 0.903202745045724,
+      "minimum_iou": 0.7649144434649474,
+      "no_detection": 0
+    },
+    "top": {
+      "images": 11,
+      "matched_iou_50": 11,
+      "recall_at_iou_50": 1.0,
+      "mean_iou": 0.8872826652967748,
+      "median_iou": 0.8972634783347834,
+      "minimum_iou": 0.7763766754933195,
+      "no_detection": 0
+    },
+    "isometric": {
+      "images": 10,
+      "matched_iou_50": 10,
+      "recall_at_iou_50": 1.0,
+      "mean_iou": 0.8974805937233573,
+      "median_iou": 0.9082955218702321,
+      "minimum_iou": 0.7649144434649474,
+      "no_detection": 0
+    }
+  },
+  "images": [
+    {
+      "source_key": "DSC01019.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.265501007437706,
+      "box_xyxy_normalized": [
+        0.3542838239864687,
+        0.28105926854937485,
+        0.6716825710812584,
+        0.7331787969849964
+      ],
+      "iou": 0.7763766754933195,
+      "match_iou_50": true,
+      "candidate_count": 6,
+      "fusion_applied": true,
+      "fusion_source_count": 2,
+      "fusion_members": [
+        "S640C1",
+        "S640C3"
+      ],
+      "speed_ms": {
+        "preprocess": 22.95459993183613,
+        "inference": 72.3180000204593,
+        "postprocess": 10.031600017100573
+      }
+    },
+    {
+      "source_key": "DSC01028.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.30696116387844086,
+      "box_xyxy_normalized": [
+        0.33160513745209347,
+        0.40629426311420114,
+        0.7055978422971988,
+        0.6074952092032766
+      ],
+      "iou": 0.9043083828835696,
+      "match_iou_50": true,
+      "candidate_count": 5,
+      "fusion_applied": true,
+      "fusion_source_count": 2,
+      "fusion_members": [
+        "S1024C2",
+        "S1024C5"
+      ],
+      "speed_ms": {
+        "preprocess": 4.8311997670680285,
+        "inference": 122.58530012331903,
+        "postprocess": 5.681699840351939
+      }
+    },
+    {
+      "source_key": "DSC09417.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.36094250679016116,
+      "box_xyxy_normalized": [
+        0.27550709701241927,
+        0.4035349866554866,
+        0.7151222528285069,
+        0.6364387965662516
+      ],
+      "iou": 0.8754271242721836,
+      "match_iou_50": true,
+      "candidate_count": 21,
+      "fusion_applied": true,
+      "fusion_source_count": 5,
+      "fusion_members": [
+        "S1024C6",
+        "S1024C9",
+        "S1024C14",
+        "S1024C19",
+        "S640C1"
+      ],
+      "speed_ms": {
+        "preprocess": 4.845000104978681,
+        "inference": 21.609599934890866,
+        "postprocess": 7.47169996611774
+      }
+    },
+    {
+      "source_key": "DSC_2256.JPG",
+      "view": "isometric",
+      "detected": true,
+      "confidence": 0.502300201356411,
+      "box_xyxy_normalized": [
+        0.07869525158151087,
+        0.2285756328989207,
+        0.9246083420757277,
+        0.7572468785507825
+      ],
+      "iou": 0.9005287240354317,
+      "match_iou_50": true,
+      "candidate_count": 20,
+      "fusion_applied": true,
+      "fusion_source_count": 20,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C5",
+        "S640C6",
+        "S640C7",
+        "S640C8",
+        "S640C9",
+        "S640C10",
+        "S1024C1",
+        "S1024C2",
+        "S1024C3",
+        "S1024C4",
+        "S1024C5",
+        "S640C11",
+        "S1024C6",
+        "S1024C7",
+        "S640C12",
+        "S1024C8"
+      ],
+      "speed_ms": {
+        "preprocess": 4.440999822691083,
+        "inference": 122.31209990568459,
+        "postprocess": 6.11030007712543
+      }
+    },
+    {
+      "source_key": "DSC_2257.JPG",
+      "view": "isometric",
+      "detected": true,
+      "confidence": 0.5295379079050488,
+      "box_xyxy_normalized": [
+        0.14225379442794853,
+        0.21141413484206442,
+        0.9241562341488625,
+        0.8022935245258954
+      ],
+      "iou": 0.8995544539714726,
+      "match_iou_50": true,
+      "candidate_count": 20,
+      "fusion_applied": true,
+      "fusion_source_count": 18,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C5",
+        "S640C6",
+        "S1024C1",
+        "S1024C2",
+        "S1024C3",
+        "S640C7",
+        "S640C8",
+        "S1024C4",
+        "S1024C5",
+        "S1024C6",
+        "S640C9",
+        "S1024C9",
+        "S640C10",
+        "S640C11"
+      ],
+      "speed_ms": {
+        "preprocess": 4.877600120380521,
+        "inference": 21.233700215816498,
+        "postprocess": 4.51450003311038
+      }
+    },
+    {
+      "source_key": "DSC_2304.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.5481052900615492,
+      "box_xyxy_normalized": [
+        0.24608467953391977,
+        0.16946332159721922,
+        0.7972966757465394,
+        0.8802836500072575
+      ],
+      "iou": 0.8399456970481709,
+      "match_iou_50": true,
+      "candidate_count": 31,
+      "fusion_applied": true,
+      "fusion_source_count": 19,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C5",
+        "S1024C3",
+        "S640C7",
+        "S640C8",
+        "S1024C4",
+        "S1024C5",
+        "S1024C6",
+        "S1024C7",
+        "S640C9",
+        "S1024C9",
+        "S640C13",
+        "S1024C11",
+        "S1024C12",
+        "S1024C13",
+        "S1024C14"
+      ],
+      "speed_ms": {
+        "preprocess": 5.385400028899312,
+        "inference": 124.4713997002691,
+        "postprocess": 4.666699795052409
+      }
+    },
+    {
+      "source_key": "DSC_5314.JPG",
+      "view": "isometric",
+      "detected": true,
+      "confidence": 0.5520311020887815,
+      "box_xyxy_normalized": [
+        0.19918070932458573,
+        0.20170890379472883,
+        0.8906245895224938,
+        0.7825379468071031
+      ],
+      "iou": 0.914345529845061,
+      "match_iou_50": true,
+      "candidate_count": 13,
+      "fusion_applied": true,
+      "fusion_source_count": 13,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C5",
+        "S1024C1",
+        "S1024C2",
+        "S1024C3",
+        "S1024C4",
+        "S1024C5",
+        "S1024C6",
+        "S640C6",
+        "S640C7"
+      ],
+      "speed_ms": {
+        "preprocess": 4.747800063341856,
+        "inference": 21.363000152632594,
+        "postprocess": 4.60060010664165
+      }
+    },
+    {
+      "source_key": "DSC_5342.JPG",
+      "view": "isometric",
+      "detected": true,
+      "confidence": 0.4299163818359375,
+      "box_xyxy_normalized": [
+        0.39372060763103245,
+        0.33592941347417243,
+        0.7232606592434129,
+        0.9185639195269673
+      ],
+      "iou": 0.7649144434649474,
+      "match_iou_50": true,
+      "candidate_count": 12,
+      "fusion_applied": true,
+      "fusion_source_count": 12,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S1024C1",
+        "S1024C2",
+        "S640C3",
+        "S640C4",
+        "S1024C3",
+        "S640C5",
+        "S1024C4",
+        "S1024C5",
+        "S640C6",
+        "S1024C6"
+      ],
+      "speed_ms": {
+        "preprocess": 4.505900200456381,
+        "inference": 21.38529997318983,
+        "postprocess": 4.434800008311868
+      }
+    },
+    {
+      "source_key": "DSC_5354.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.5807395905256272,
+      "box_xyxy_normalized": [
+        0.30494091400624246,
+        0.03774701432422709,
+        0.9674302018492617,
+        0.5788849019473916
+      ],
+      "iou": 0.8890478320808349,
+      "match_iou_50": true,
+      "candidate_count": 10,
+      "fusion_applied": true,
+      "fusion_source_count": 10,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C5",
+        "S640C6",
+        "S640C7",
+        "S640C8",
+        "S1024C1",
+        "S640C9"
+      ],
+      "speed_ms": {
+        "preprocess": 4.403600236400962,
+        "inference": 21.579499822109938,
+        "postprocess": 4.451100016012788
+      }
+    },
+    {
+      "source_key": "DSC_6298.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.6307637064080489,
+      "box_xyxy_normalized": [
+        0.1791303380508353,
+        0.14259978311060434,
+        0.8797761183330994,
+        0.6179058195196673
+      ],
+      "iou": 0.9362350970592392,
+      "match_iou_50": true,
+      "candidate_count": 19,
+      "fusion_applied": true,
+      "fusion_source_count": 19,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C5",
+        "S1024C1",
+        "S640C6",
+        "S1024C2",
+        "S1024C3",
+        "S1024C4",
+        "S640C7",
+        "S1024C5",
+        "S1024C6",
+        "S1024C7",
+        "S1024C8",
+        "S1024C9",
+        "S1024C10",
+        "S1024C11",
+        "S640C8"
+      ],
+      "speed_ms": {
+        "preprocess": 4.512599902227521,
+        "inference": 21.174399880692363,
+        "postprocess": 4.25049988552928
+      }
+    },
+    {
+      "source_key": "DSC_6406.JPG",
+      "view": "isometric",
+      "detected": true,
+      "confidence": 0.6565645281225443,
+      "box_xyxy_normalized": [
+        0.16466203285943495,
+        0.2907687257147554,
+        0.7385209559602649,
+        0.728320954334597
+      ],
+      "iou": 0.9244913024647,
+      "match_iou_50": true,
+      "candidate_count": 16,
+      "fusion_applied": true,
+      "fusion_source_count": 16,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S1024C1",
+        "S640C3",
+        "S1024C2",
+        "S1024C3",
+        "S640C4",
+        "S640C5",
+        "S1024C4",
+        "S1024C5",
+        "S1024C6",
+        "S1024C7",
+        "S640C6",
+        "S1024C8",
+        "S1024C9",
+        "S640C7"
+      ],
+      "speed_ms": {
+        "preprocess": 4.604300018399954,
+        "inference": 21.04529971256852,
+        "postprocess": 4.4646000023931265
+      }
+    },
+    {
+      "source_key": "DSC_6424.JPG",
+      "view": "isometric",
+      "detected": true,
+      "confidence": 0.6158058329632408,
+      "box_xyxy_normalized": [
+        0.17607475910402917,
+        0.227010612672433,
+        0.7028233650024992,
+        0.6462652810570406
+      ],
+      "iou": 0.9155401685469333,
+      "match_iou_50": true,
+      "candidate_count": 22,
+      "fusion_applied": true,
+      "fusion_source_count": 19,
+      "fusion_members": [
+        "S640C1",
+        "S1024C1",
+        "S1024C2",
+        "S640C2",
+        "S1024C3",
+        "S640C3",
+        "S1024C4",
+        "S1024C5",
+        "S1024C6",
+        "S1024C7",
+        "S640C4",
+        "S640C5",
+        "S1024C8",
+        "S640C6",
+        "S640C7",
+        "S640C8",
+        "S1024C9",
+        "S1024C10",
+        "S640C9"
+      ],
+      "speed_ms": {
+        "preprocess": 4.839200060814619,
+        "inference": 21.75089973025024,
+        "postprocess": 4.6744998544454575
+      }
+    },
+    {
+      "source_key": "DSC_6466.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.5886152256280184,
+      "box_xyxy_normalized": [
+        0.1805827887962313,
+        0.26214231907487107,
+        0.8382250592187411,
+        0.6921680938203625
+      ],
+      "iou": 0.8972634783347834,
+      "match_iou_50": true,
+      "candidate_count": 16,
+      "fusion_applied": true,
+      "fusion_source_count": 16,
+      "fusion_members": [
+        "S1024C1",
+        "S640C1",
+        "S1024C2",
+        "S640C2",
+        "S1024C3",
+        "S1024C4",
+        "S1024C5",
+        "S1024C6",
+        "S640C3",
+        "S640C4",
+        "S1024C7",
+        "S1024C8",
+        "S640C5",
+        "S640C6",
+        "S640C7",
+        "S1024C9"
+      ],
+      "speed_ms": {
+        "preprocess": 4.8160001169890165,
+        "inference": 21.748000057414174,
+        "postprocess": 4.636900033801794
+      }
+    },
+    {
+      "source_key": "DSC_6467.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.4224531054496765,
+      "box_xyxy_normalized": [
+        0.15463718292860054,
+        0.24955523148267478,
+        0.7840039891221411,
+        0.6216340294158145
+      ],
+      "iou": 0.903202745045724,
+      "match_iou_50": true,
+      "candidate_count": 4,
+      "fusion_applied": true,
+      "fusion_source_count": 4,
+      "fusion_members": [
+        "S1024C1",
+        "S1024C2",
+        "S1024C3",
+        "S1024C4"
+      ],
+      "speed_ms": {
+        "preprocess": 4.476000322028995,
+        "inference": 21.16030012257397,
+        "postprocess": 3.398299915716052
+      }
+    },
+    {
+      "source_key": "DSC_7110.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.6603077933192253,
+      "box_xyxy_normalized": [
+        0.2486575159368324,
+        0.07092694373442908,
+        0.7216877903746217,
+        0.8165433548584505
+      ],
+      "iou": 0.8964533739260205,
+      "match_iou_50": true,
+      "candidate_count": 37,
+      "fusion_applied": true,
+      "fusion_source_count": 20,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C6",
+        "S640C7",
+        "S640C8",
+        "S1024C1",
+        "S640C10",
+        "S1024C2",
+        "S1024C3",
+        "S640C11",
+        "S1024C5",
+        "S1024C6",
+        "S1024C7",
+        "S1024C13",
+        "S1024C14",
+        "S1024C16",
+        "S640C16",
+        "S640C17"
+      ],
+      "speed_ms": {
+        "preprocess": 4.3384002055972815,
+        "inference": 21.457900060340762,
+        "postprocess": 4.513400141149759
+      }
+    },
+    {
+      "source_key": "DSC_7208.JPG",
+      "view": "isometric",
+      "detected": true,
+      "confidence": 0.5223057738372258,
+      "box_xyxy_normalized": [
+        0.13237176016196905,
+        0.19765413156352438,
+        0.9532415789814213,
+        0.8470984379159117
+      ],
+      "iou": 0.9064355852473183,
+      "match_iou_50": true,
+      "candidate_count": 21,
+      "fusion_applied": true,
+      "fusion_source_count": 21,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S1024C1",
+        "S1024C2",
+        "S1024C3",
+        "S640C5",
+        "S1024C4",
+        "S1024C5",
+        "S1024C6",
+        "S640C6",
+        "S640C7",
+        "S640C8",
+        "S640C9",
+        "S1024C7",
+        "S1024C8",
+        "S640C10",
+        "S640C11",
+        "S640C12",
+        "S1024C9"
+      ],
+      "speed_ms": {
+        "preprocess": 4.410300171002746,
+        "inference": 21.095100324600935,
+        "postprocess": 4.331700038164854
+      }
+    },
+    {
+      "source_key": "DSC_7359.JPG",
+      "view": "isometric",
+      "detected": true,
+      "confidence": 0.6144412422881407,
+      "box_xyxy_normalized": [
+        0.33731007403408325,
+        0.16299555160824786,
+        0.7623619211000214,
+        0.8339632014359473
+      ],
+      "iou": 0.9040677619119303,
+      "match_iou_50": true,
+      "candidate_count": 17,
+      "fusion_applied": true,
+      "fusion_source_count": 17,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S1024C1",
+        "S1024C2",
+        "S1024C3",
+        "S640C5",
+        "S640C6",
+        "S640C7",
+        "S640C8",
+        "S1024C4",
+        "S1024C5",
+        "S1024C6",
+        "S1024C7",
+        "S640C9",
+        "S1024C8"
+      ],
+      "speed_ms": {
+        "preprocess": 4.275399725884199,
+        "inference": 22.6863999851048,
+        "postprocess": 4.291400080546737
+      }
+    },
+    {
+      "source_key": "DSC_8651.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.5652669429779053,
+      "box_xyxy_normalized": [
+        0.13509641299142933,
+        0.2985414568775116,
+        0.8388429259444073,
+        0.7245937003193852
+      ],
+      "iou": 0.8982282429044821,
+      "match_iou_50": true,
+      "candidate_count": 28,
+      "fusion_applied": true,
+      "fusion_source_count": 20,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C5",
+        "S640C6",
+        "S1024C1",
+        "S640C7",
+        "S640C8",
+        "S1024C4",
+        "S1024C5",
+        "S1024C6",
+        "S1024C9",
+        "S1024C12",
+        "S640C9",
+        "S640C10",
+        "S1024C13",
+        "S1024C14",
+        "S1024C15",
+        "S1024C16"
+      ],
+      "speed_ms": {
+        "preprocess": 4.90409997291863,
+        "inference": 21.816200111061335,
+        "postprocess": 4.726300248876214
+      }
+    },
+    {
+      "source_key": "DSC_9467.JPG",
+      "view": "isometric",
+      "detected": true,
+      "confidence": 0.5825833568447515,
+      "box_xyxy_normalized": [
+        0.18279018940174835,
+        0.13497022743967127,
+        0.9450054412306127,
+        0.7125714663514682
+      ],
+      "iou": 0.9101554584931459,
+      "match_iou_50": true,
+      "candidate_count": 19,
+      "fusion_applied": true,
+      "fusion_source_count": 19,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C5",
+        "S1024C1",
+        "S640C6",
+        "S640C7",
+        "S1024C2",
+        "S1024C3",
+        "S1024C4",
+        "S1024C5",
+        "S1024C6",
+        "S1024C7",
+        "S640C8",
+        "S640C9",
+        "S1024C8",
+        "S640C10",
+        "S1024C9"
+      ],
+      "speed_ms": {
+        "preprocess": 4.162600031122565,
+        "inference": 21.718300180509686,
+        "postprocess": 5.007799947634339
+      }
+    },
+    {
+      "source_key": "DSC_9475.JPG",
+      "view": "isometric",
+      "detected": true,
+      "confidence": 0.5590990876609628,
+      "box_xyxy_normalized": [
+        0.13436085638684633,
+        0.2073854364810368,
+        0.8736668845064093,
+        0.8017776292479224
+      ],
+      "iou": 0.9347725092526328,
+      "match_iou_50": true,
+      "candidate_count": 22,
+      "fusion_applied": true,
+      "fusion_source_count": 22,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C5",
+        "S1024C1",
+        "S1024C2",
+        "S1024C3",
+        "S1024C4",
+        "S640C6",
+        "S1024C5",
+        "S1024C6",
+        "S640C7",
+        "S640C8",
+        "S640C9",
+        "S1024C7",
+        "S640C10",
+        "S1024C8",
+        "S1024C9",
+        "S640C11",
+        "S1024C10",
+        "S1024C11"
+      ],
+      "speed_ms": {
+        "preprocess": 3.7544998340308666,
+        "inference": 21.15150005556643,
+        "postprocess": 3.2033000607043505
+      }
+    },
+    {
+      "source_key": "DSC_9533.JPG",
+      "view": "top",
+      "detected": true,
+      "confidence": 0.6311224371194839,
+      "box_xyxy_normalized": [
+        0.1731999129509578,
+        0.2753822385160027,
+        0.8784829625650825,
+        0.7777361600011492
+      ],
+      "iou": 0.9436206692161951,
+      "match_iou_50": true,
+      "candidate_count": 10,
+      "fusion_applied": true,
+      "fusion_source_count": 10,
+      "fusion_members": [
+        "S640C1",
+        "S640C2",
+        "S640C3",
+        "S640C4",
+        "S640C5",
+        "S640C6",
+        "S640C7",
+        "S640C8",
+        "S1024C1",
+        "S640C9"
+      ],
+      "speed_ms": {
+        "preprocess": 3.6558997817337513,
+        "inference": 21.485400153324008,
+        "postprocess": 3.029200015589595
+      }
+    }
+  ]
+}
